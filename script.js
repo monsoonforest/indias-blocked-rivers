@@ -1,8 +1,8 @@
 // Edit the center point and zoom level
 var map = L.map('map', {
   center: [20.34, 77.89],
-  zoom: 4  ,
-  minZoom : 4,
+  zoom: 5  ,
+  minZoom : 5,
   scrollWheelZoom: true
 });
 
@@ -21,8 +21,8 @@ var controlLayers = L.control.layers( null, null, {
 
 
 // Edit links to your GitHub repo and data source credit
-map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/senior-citizens-sagalee">open-source code on GitHub</a>');
-map.attributionControl.addAttribution('Population data &copy; <a href="https://eci.gov.in/">ECI India </a>');
+map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
+map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
 
 new L.esri.basemapLayer('Imagery').addTo(map);
@@ -34,90 +34,25 @@ new L.esri.basemapLayer('ImageryLabels').addTo(map);
 //   }).addTo(map);
 // });
 
-$.getJSON("metalled-roads.geojson", function (data) {
+
+$.getJSON("dams_wri_table_20220331.geojson", function (data) {
   geoJsonLayer = L.geoJson(data, {
-    style: {color: 'white', weight:1.5},
-    
+    style: {color: '#ff0000', weight:1.5},
+       onEachFeature: onEachFeature
+
   }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Metalled Roads');
+controlLayers.addOverlay(geoJsonLayer, 'Dams');
 });
 
-
-$.getJSON("unmetalled-roads.geojson", function (data) {
+$.getJSON("barrages_wri_table_20220331.geojson", function (data) {
   geoJsonLayer = L.geoJson(data, {
-    style: {color: '#e25a00', weight:1.5},
-    
+    style: {color: '#ffa500', weight:1.5},
+       onEachFeature: onEachFeature
+
   }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Unmetalled Roads');
+controlLayers.addOverlay(geoJsonLayer, 'Barrages');
 });
 
-
-$.getJSON("foot-trails.geojson", function (data) {
-  geoJsonLayer = L.geoJson(data, {
-    style: {color: '#eef203', weight:1.5},
-   
-  }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Foot Trails');
-});
-
-
-
-// Edit to upload GeoJSON data file from your local directory
-$.getJSON("AC15-Sagalee-senior-citizen-population-polling-stations-polygons.geojson", function (data) {
- geoJsonLayer = L.geoJson(data, {
-    style: style,
-    onEachFeature: onEachFeature
-  }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Polling Stations');
-
-});
-
-// $.getJSON("places.geojson", function (data) {
-//   geoJsonLayer = L.geoJson(data, {
-//     style: {color: 'white'},
-    
-//   }).addTo(map);
-// controlLayers.addOverlay(geoJsonLayer, 'Metalled Roads');
-// });
-
-
-
-
-// Edit ranges and colors to match your data; see http://colorbrewer.org
-// Any values not listed in the ranges below displays as the last color
-// FOR VIRIDIS COLOUR SCHEME
-// function getColor(d) {
-//   return d > 60  ? '#440154' :
-//          d > 40  ? '#443a83' :
-//          d > 20  ? '#31688e' :
-//          d > 10  ? '#20908d' :
-//          d > 5   ? '#35b779' :
-//          d > 2.5 ? '#8fd744' :
-//          d > 0.5 ? '#fde725' :
-//                     '#FFEDA0';
-// }
-
-// FOR MAGMA COLOUR SCHEME
-function getColor(d) {
-  return d > 65 ? '#f0f921' :
-         d > 35 ? '#f89541' :
-         d > 25 ? '#cb4778' :
-         d > 15 ? '#7e03a8' :
-         d >= 3  ? '#0d0887' :
-                   '#fd0000';
-}
-
-
-// Edit the getColor property to match data column header in your GeoJson file
-function style(feature) {
-  return {
-    fillColor: getColor(feature.properties.population_above_59),
-    weight: 0.8,
-    opacity: 1,
-    color: 'white',
-    fillOpacity: 1
-  };
-}
 
 
 // This highlights the layer on hover, also for mobile
@@ -143,7 +78,7 @@ function zoomToFeature(e) {
 }
 
 // This instructs highlight and reset functions on hover movement
-function onEachFeature(feature, layer) {
+function onEachFseature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
@@ -163,9 +98,10 @@ info.onAdd = function (map) {
 
 // Edit info box text and variables (such as elderly density 2014) to match those in your GeoJSON data
 info.update = function (props) {
-  this._div.innerHTML = '<h4>Sagalee Constituency<br />Population of Senior Citizens 2020</h4>' +  (props ?
-    '<b>' + props.name + ' ' + props.polling_station + '</b><br />' + props.population_above_59 + ' Senior Citizens'
-    : 'Click on a Polling Station');
+  this._div.innerHTML = '<h4>Dams and Barrages of India</h4>' +  (props ?
+    '<b>' + props.name + '</b><br />' + props.State + '</b><br />' + props.River + '</b><br />'+ props.Basin + '</b><br />' + props.Year_of_Completion
+
+    : 'Click on a Feature');
 };  
 
 
