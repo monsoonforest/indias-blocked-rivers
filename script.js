@@ -50,28 +50,29 @@ map.addLayer(imagerylabels);
 // controlLayers.addOverlay(geoJsonLayer, 'Barrages');
 // });
 
-function setStyle(feature) {
-	return {
-		opacity: 1,
-		weight: 2,
-		color: "#FF0000",
-		fillOpacity: 0.8
-	}
-}
-L.geoJson(barrages, {
-	style: setStyle
-}).addTo(map);
+// function setStyle(feature) {
+// 	return {
+// 		opacity: 1,
+// 		weight: 2,
+// 		color: "#ff0000",
+// 		fillOpacity: 0.8
+// 	}
+// }
 
-L.geoJson(dams, {
-	style: setStyle
-}).addTo(map);
+// L.geoJson(barrages, {
+// 	style: setStyle
+// }).addTo(map);
+
+// L.geoJson(dams, {
+// 	style: setStyle
+// }).addTo(map);
 
 for (var num = 0; num < barrages.length; num++) {
 	// Grab information on the barrages we are currently looping through
 	var barrage = barrages[num];
 	var barrage_lat = barrage["Latitude"];
 	var barrage_long = barrage["Longitude"];
-	var barrage_name = barrage["name"];
+	var barrage_name = barrage["barrage"];
 	var barrage_state = barrage["State"];
 	var barrage_river = barrage["River"];
 	var barrage_year = barrage["Year_of_Completion"];
@@ -93,10 +94,10 @@ for (var num = 0; num < barrages.length; num++) {
 
 for (var num = 0; num < dams.length; num++) {
 	// Grab information on the dams we are currently looping through
-	var dam = dams[num];
+	var name`` = dams[num];
 	var dam_lat = dam["Latitude"];
 	var dam_long = dam["Longitude"];
-	var dam_name = dam["name"];
+	var dam_name = dam["dam"];
 	var dam_state = dam["State"];
 	var dam_river = dam["River"];
 	var dam_year = dam["Year_of_Completion"];
