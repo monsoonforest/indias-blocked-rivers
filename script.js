@@ -7,6 +7,7 @@ var map = L.map('map', {
 });
 
 
+
 // layer controls
 var controlLayers = L.control.layers( null, null, {
      position:"topleft",
@@ -25,8 +26,10 @@ map.attributionControl.addAttribution('View <a href="https://github.com/monsoonf
 map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
 
-new L.esri.basemapLayer('Imagery').addTo(map);
-new L.esri.basemapLayer('ImageryLabels').addTo(map);
+var imagery = new L.esri.basemapLayer('Imagery').addTo(map);
+var imagerylabels = new L.esri.basemapLayer('ImageryLabels').addTo(map);
+map.addLayer(imagery);
+map.addLayer(imagerylabels);
 
 
 // $.getJSON("dams_wri_table_20220331.geojson", function (data) {
