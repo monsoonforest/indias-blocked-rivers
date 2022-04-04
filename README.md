@@ -1,12 +1,10 @@
-# MAP OF SENIOR CITIZENS IN SAGALEE CONSTITUENCY, PAPUM PARE DISTRICT, ARUNACHAL PRADESH, INDIA
-A thematic map of senior citizen (>60 years old) density at the polling station level in Sagalee Constituency.
-
+# MAP OF DAMS AND BARRAGES INDIA
+A map of barrages and dams of India from the the Government of India's Ministry of Jal Shakti
 
 Site is hosted on <a href="https://pages.github.com/" rel="nofollow"> GitHub</a>.
 
 ## Data and layers
-- Senior citizen population sourced from <a href="https://ceokarnataka.kar.nic.in/" rel="nofollow"> Chief Electoral Officer Karnataka</a>.
-
+Government of India's Ministry of Jal Shakti:  <a href="https://indiawris.gov.in/wris/#/waterResources"  rel="nofollow"> India Water Resources Information System </a>
 
 ## Credits and Demo
 - Leaflet choropleth tutorial (with US state population density example): http://leafletjs.com/examples/choropleth.html

@@ -47,26 +47,34 @@ new L.esri.basemapLayer('ImageryLabels').addTo(map);
 // controlLayers.addOverlay(geoJsonLayer, 'Barrages');
 // });
 
+L.geoJson(barrages, {
+	style: setStyle
+}).addTo(map);
+
+L.geoJson(dams, {
+	style: setStyle
+}).addTo(map);
+
 for (var num = 0; num < barrages.name; num++) {
 	// Grab information on the barrages we are currently looping through
-	var barrages = barrages[num];
-	var barrages_lat = barrages["Latitude"];
-	var barrages_long = barrages["Longitude"];
-	var barrages_name = barrages["name"];
-	var barrages_state = barrages["State"];
-	var barrages_river = barrages["River"];
-	var barrages_year = barrages["Year_of_Completion"];
+	var barrage = barrages[num];
+	var barrage_lat = barrage["Latitude"];
+	var barrage_long = barrage["Longitude"];
+	var barrage_name = barrage["name"];
+	var barrage_state = barrage["State"];
+	var barrage_river = barrage["River"];
+	var barrage_year = barrage["Year_of_Completion"];
 
-	// Use Leaflet to add a marker for each barrages
+	// Use Leaflet to add a marker for each barrage
 	// And give it the lat, long information
-	// In the current barrages's object
-	var marker = L.marker([barrages_lat, barrages_long]).addTo(map);
+	// In the current barrage's object
+	var marker = L.marker([barrage_lat, barrage_long]).addTo(map);
 	
 	// HTML that will appear in popup
-	var popup_html = '<h3>' + barrages_name + '</h3>';
-	popup_html += '<div>' + barrages_state + '</div>';
-	popup_html += '<div>' + barrages_river + '</div>';
-    popup_html += '<div>' + barrages_year + '</div>';
+	var popup_html = '<h3>' + barrage_name + '</h3>';
+	popup_html += '<div>' + barrage_state + '</div>';
+	popup_html += '<div>' + barrage_river + '</div>';
+    popup_html += '<div>' + barrage_year + '</div>';
 	
 	// Bind the popup to the marker using Leaflet
 	marker.bindPopup(popup_html);
