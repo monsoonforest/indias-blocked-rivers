@@ -8,11 +8,11 @@ var map = L.map('map', {
 
 
 
-// layer controls
-var controlLayers = L.control.layers( null, null, {
-     position:"topleft",
-     collapsed: true // truw = closed by default
-    }).addTo(map);
+// // layer controls
+// var controlLayers = L.control.layers( null, null, {
+//      position:"topleft",
+//      collapsed: true // truw = closed by default
+//     }).addTo(map);
 
 // new L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png', {
 //   attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -50,6 +50,14 @@ map.addLayer(imagerylabels);
 // controlLayers.addOverlay(geoJsonLayer, 'Barrages');
 // });
 
+function setStyle(feature) {
+	return {
+		opacity: 1,
+		weight: 2,
+		color: "#FF0000",
+		fillOpacity: 0.8
+	}
+}
 L.geoJson(barrages, {
 	style: setStyle
 }).addTo(map);
@@ -78,6 +86,31 @@ for (var num = 0; num < barrages.length; num++) {
 	popup_html += '<div>' + barrage_state + '</div>';
 	popup_html += '<div>' + barrage_river + '</div>';
     popup_html += '<div>' + barrage_year + '</div>';
+	
+	// Bind the popup to the marker using Leaflet
+	marker.bindPopup(popup_html);
+}
+
+for (var num = 0; num < dams.length; num++) {
+	// Grab information on the dams we are currently looping through
+	var dam = dams[num];
+	var dam_lat = dam["Latitude"];
+	var dam_long = dam["Longitude"];
+	var dam_name = dam["name"];
+	var dam_state = dam["State"];
+	var dam_river = dam["River"];
+	var dam_year = dam["Year_of_Completion"];
+
+	// Use Leaflet to add a marker for each dam
+	// And give it the lat, long information
+	// In the current dam's object
+	var marker = L.marker([dam_lat, dam_long]).addTo(map);
+	
+	// HTML that will appear in popup
+	var popup_html = '<h3>' + dam_name + '</h3>';
+	popup_html += '<div>' + dam_state + '</div>';
+	popup_html += '<div>' + dam_river + '</div>';
+    popup_html += '<div>' + dam_year + '</div>';
 	
 	// Bind the popup to the marker using Leaflet
 	marker.bindPopup(popup_html);
