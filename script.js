@@ -55,7 +55,7 @@ L.geoJson(dams, {
 	style: setStyle
 }).addTo(map);
 
-for (var num = 0; num < barrages.name; num++) {
+for (var num = 0; num < barrages.length; num++) {
 	// Grab information on the barrages we are currently looping through
 	var barrage = barrages[num];
 	var barrage_lat = barrage["Latitude"];
