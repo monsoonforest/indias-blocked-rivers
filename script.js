@@ -29,44 +29,44 @@ new L.esri.basemapLayer('Imagery').addTo(map);
 new L.esri.basemapLayer('ImageryLabels').addTo(map);
 
 
-$.getJSON("dams_wri_table_20220331.geojson", function (data) {
-  geoJsonLayer = L.geoJson(data, {
-    style: {color: '#ff0000', weight:1.5},
-       onEachFeature: onEachFeature
+// $.getJSON("dams_wri_table_20220331.geojson", function (data) {
+//   geoJsonLayer = L.geoJson(data, {
+//     style: {color: '#ff0000', weight:1.5},
+//        onEachFeature: onEachFeature
 
-  }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Dams');
-});
+//   }).addTo(map);
+// controlLayers.addOverlay(geoJsonLayer, 'Dams');
+// });
 
-$.getJSON("barrages_wri_table_20220331.geojson", function (data) {
-  geoJsonLayer = L.geoJson(data, {
-    style: {color: '#ffa500', weight:1.5},
-       onEachFeature: onEachFeature
+// $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
+//   geoJsonLayer = L.geoJson(data, {
+//     style: {color: '#ffa500', weight:1.5},
+//        onEachFeature: onEachFeature
 
-  }).addTo(map);
-controlLayers.addOverlay(geoJsonLayer, 'Barrages');
-});
+//   }).addTo(map);
+// controlLayers.addOverlay(geoJsonLayer, 'Barrages');
+// });
 
 for (var num = 0; num < barrages.name; num++) {
-	// Grab information on the brewery we are currently looping through
+	// Grab information on the barrages we are currently looping through
 	var barrages = barrages[num];
 	var barrages_lat = barrages["Latitude"];
 	var barrages_long = barrages["Longitude"];
-	var barrages_name = barrages["barrages"];
+	var barrages_name = barrages["name"];
 	var barrages_state = barrages["State"];
 	var barrages_river = barrages["River"];
 	var barrages_year = barrages["Year_of_Completion"];
 
-	// Use Leaflet to add a marker for each brewery
+	// Use Leaflet to add a marker for each barrages
 	// And give it the lat, long information
-	// In the current brewery's object
-	var marker = L.marker([brewery_lat, brewery_long]).addTo(map);
+	// In the current barrages's object
+	var marker = L.marker([barrages_lat, barrages_long]).addTo(map);
 	
 	// HTML that will appear in popup
-	var popup_html = '<h3>' + brewery_name + '</h3>';
-	popup_html += '<div>' + brewery_state + '</div>';
-	popup_html += '<div>' + brewery_river + '</div>';
-    popup_html += '<div>' + brewery_year + '</div>';
+	var popup_html = '<h3>' + barrages_name + '</h3>';
+	popup_html += '<div>' + barrages_state + '</div>';
+	popup_html += '<div>' + barrages_river + '</div>';
+    popup_html += '<div>' + barrages_year + '</div>';
 	
 	// Bind the popup to the marker using Leaflet
 	marker.bindPopup(popup_html);
