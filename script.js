@@ -1,7 +1,7 @@
 // Edit the center point and zoom level
 var map = L.map('map', {
   center: [20.34, 77.89],
-  zoom: 10  ,
+  zoom: 5  ,
   minZoom : 5,
   scrollWheelZoom: true
 });
@@ -54,7 +54,7 @@ $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
   var barrages = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
           return L.marker(latlng, { options: {
-            icon: barragesIcon
+            icon: barrageIcon
             
           }          })
           .bindPopup('Barrage Name: ' + feature.properties.barrage + '<br>' + 'River Name: '+ feature.properties.River);
