@@ -16,12 +16,7 @@ var imagery = new L.esri.basemapLayer('Imagery');
 var imagerylabels = new L.esri.basemapLayer('ImageryLabels');
 
 // Edit the center point and zoom level
-var map = L.Map('map', {
-  center: [20.34, 77.89],
-  zoom: 5  ,
-  minZoom : 5,
-  scrollWheelZoom: true
-});
+var map = L.Map('map').setView([20.34, 77.89],7);
 
 map.addLayer(imagery);
 map.addLayer(imagerylabels);
