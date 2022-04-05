@@ -16,8 +16,8 @@ map.attributionControl.addAttribution('View <a href="https://github.com/monsoonf
 map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
 
-var imagery = new L.esri.basemapLayer('Imagery').addTo(map);
-var imagerylabels = new L.esri.basemapLayer('ImageryLabels').addTo(map);
+var imagery = new L.esri.basemapLayer('Imagery');
+var imagerylabels = new L.esri.basemapLayer('ImageryLabels');
 // Edit the center point and zoom level
 var map = L.map('map', {
   center: [20.34, 77.89],
@@ -92,7 +92,7 @@ for (var num = 0; num < barrages.length; num++) {
 
 for (var num = 0; num < dams.length; num++) {
 	// Grab information on the dams we are currently looping through
-	var name`` = dams[num];
+	var dam = dams[num];
 	var dam_lat = dam["Latitude"];
 	var dam_long = dam["Longitude"];
 	var dam_name = dam["dam"];
