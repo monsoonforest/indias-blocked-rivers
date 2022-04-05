@@ -10,16 +10,14 @@
 //         attribution: '©OpenStreetMap, ©CartoDB'
 // }).addTo(map);
 
-
-
-var imagery = new L.esri.basemapLayer('Imagery');
-var imagerylabels = new L.esri.basemapLayer('ImageryLabels');
-
 // Edit the center point and zoom level
 var map = L.Map('map').setView([20.34, 77.89],7);
 
-map.addLayer(imagery);
-map.addLayer(imagerylabels);
+
+new L.esri.basemapLayer('Imagery').addTo(map);;
+new L.esri.basemapLayer('ImageryLabels').addTo(map);;
+
+
 
 // Edit links to your GitHub repo and data source credit
 map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
