@@ -33,9 +33,9 @@ $.getJSON("dams_wri_table_20220331.geojson", function (data) {
   var dams = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
           return L.marker(latlng, { options: {
-            iconSize:     [5, 10],
-            color:'#6afc6c'
-          }          })
+            iconUrl: 'dams.png',
+            iconSize:     [5, 10]
+                     }          })
           .bindPopup('Dam Name: ' + feature.properties.dam + '<br>' + 'River Name: ' + feature.properties.River);
         }
       }).addTo(map); // display by default
@@ -47,8 +47,9 @@ $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
   var barrages = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
           return L.marker(latlng, { options: {
-            iconSize:     [5, 10],
-            color:'#ff0000'
+            iconUrl: 'barrages.png',
+            iconSize:     [5, 10]
+            
           }          })
           .bindPopup('Barrage Name: ' + feature.properties.barrage + '<br>' + 'River Name: '+ feature.properties.River);
         }
