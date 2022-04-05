@@ -1,5 +1,5 @@
 // Edit the center point and zoom level
-var map = L.Map('map', {
+var map = L.map('map', {
   center: [20.34, 77.89],
   zoom: 5  ,
   minZoom : 5,
