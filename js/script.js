@@ -28,8 +28,6 @@ map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.go
 
 var imagery = new L.esri.basemapLayer('Imagery').addTo(map);
 var imagerylabels = new L.esri.basemapLayer('ImageryLabels').addTo(map);
-map.addLayer(imagery);
-map.addLayer(imagerylabels);
 
 
 // $.getJSON("dams_wri_table_20220331.geojson", function (data) {
