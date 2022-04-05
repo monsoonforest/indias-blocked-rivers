@@ -36,7 +36,7 @@ $.getJSON("dams_wri_table_20220331.geojson", function (data) {
             iconSize:     [5, 10],
             color:'#6afc6c'
           }          })
-          .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
+          .bindPopup('Dam Name: ' + feature.properties.dam + '<br>' + 'River Name: ' + feature.properties.River);
         }
       }).addTo(map); // display by default
   controlLayers.addOverlay(dams, 'DAMS')
@@ -50,10 +50,10 @@ $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
             iconSize:     [5, 10],
             color:'#ff0000'
           }          })
-          .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
+          .bindPopup('Barrage Name: ' + feature.properties.barrage + '<br>' + 'River Name: '+ feature.properties.River);
         }
       }).addTo(map); // display by default
-  controlLayers.addOverlay(dams, 'BARRAGES')
+  controlLayers.addOverlay(barrages, 'BARRAGES')
      });
 // function setStyle(feature) {
 // 	return {
