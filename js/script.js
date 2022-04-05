@@ -7,6 +7,8 @@ var map = L.map('map', {
 });
 
 
+//new L.esri.basemapLayer('Imagery').addTo(map);
+new L.esri.basemapLayer('ImageryLabels').addTo(map);
 
 // layer controls
 var controlLayers = L.control.layers( null, null, {
@@ -26,22 +28,21 @@ map.attributionControl.addAttribution('View <a href="https://github.com/monsoonf
 map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
 
-new L.esri.basemapLayer('Imagery').addTo(map);
-new L.esri.basemapLayer('ImageryLabels').addTo(map);
 
-// $.getJSON("json/dams_wri_table_20220331.geojson", function (data) {
-//   var geoJsonLayer = L.geoJson(data, {
-//         pointToLayer: function( feature, latlng) {
-//           return L.marker(latlng, { options: {
-//             iconSize:     [20, 80],
-//             color:'#6afc6c'
-//           }
-//           })
-//           .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
-//         }
-//       }).addTo(map); // display by default
+$.getJSON("json/dams_wri_table_20220331.geojson", function (data) {
+  var geoJsonLayer = L.geoJson(data, {
+        pointToLayer: function( feature, latlng) {
+          return L.marker(latlng, { options: {
+            iconSize:     [20, 80],
+            color:'#6afc6c'
+          }
+          })
+          .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
+        }
+      }).addTo(map); // display by default
 
-//     });
+    });
+
 // $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
 //   geoJsonLayer = L.geoJson(data, {
 //     style: {color: '#ffa500', weight:1.5},
