@@ -27,14 +27,17 @@ new L.esri.basemapLayer('ImageryLabels').addTo(map);
 map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
 map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
+var damIcon = L.icon({
+    iconUrl: 'dams.png',
+    iconSize: [38, 95]
+  });
 
 
 $.getJSON("dams_wri_table_20220331.geojson", function (data) {
   var dams = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
-          return L.icon(latlng, { options: {
-            iconUrl: 'dams.png',
-            iconSize:     [5, 10]
+          return L.marker(latlng, { options: {
+            icon: damIcon
                      }          })
           .bindPopup('Dam Name: ' + feature.properties.dam + '<br>' + 'River Name: ' + feature.properties.River);
         }
@@ -42,13 +45,16 @@ $.getJSON("dams_wri_table_20220331.geojson", function (data) {
   controlLayers.addOverlay(dams, 'DAMS')
      });
 
+var barrageIcon = L.icon({
+    iconUrl: 'barrages.png',
+    iconSize: [38, 95]
+  });
 
 $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
   var barrages = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
-          return L.icon(latlng, { options: {
-            iconUrl: 'barrages.png',
-            iconSize:     [5, 10]
+          return L.marker(latlng, { options: {
+            icon: barragesIcon
             
           }          })
           .bindPopup('Barrage Name: ' + feature.properties.barrage + '<br>' + 'River Name: '+ feature.properties.River);
