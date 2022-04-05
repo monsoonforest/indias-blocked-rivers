@@ -11,15 +11,12 @@
 // }).addTo(map);
 
 
-// Edit links to your GitHub repo and data source credit
-map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
-map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
-
 
 var imagery = new L.esri.basemapLayer('Imagery');
 var imagerylabels = new L.esri.basemapLayer('ImageryLabels');
+
 // Edit the center point and zoom level
-var map = L.map('map', {
+var map = L.Map('map', {
   center: [20.34, 77.89],
   zoom: 5  ,
   minZoom : 5,
@@ -28,6 +25,10 @@ var map = L.map('map', {
 
 map.addLayer(imagery);
 map.addLayer(imagerylabels);
+
+// Edit links to your GitHub repo and data source credit
+map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
+map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
 
 // $.getJSON("dams_wri_table_20220331.geojson", function (data) {
