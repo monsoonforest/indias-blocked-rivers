@@ -94,7 +94,7 @@ for (var num = 0; num < barrages.length; num++) {
 
 for (var num = 0; num < dams.length; num++) {
 	// Grab information on the dams we are currently looping through
-	var name`` = dams[num];
+	var name = dams[num];
 	var dam_lat = dam["Latitude"];
 	var dam_long = dam["Longitude"];
 	var dam_name = dam["dam"];
