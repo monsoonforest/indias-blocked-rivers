@@ -30,28 +30,31 @@ map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.go
 
 
 $.getJSON("dams_wri_table_20220331.geojson", function (data) {
-  var geoJsonLayer = L.geoJson(data, {
+  var dams = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
           return L.marker(latlng, { options: {
-            iconSize:     [20, 80],
+            iconSize:     [5, 10],
             color:'#6afc6c'
           }          })
           .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
         }
       }).addTo(map); // display by default
-  controlLayers.addOverlay(geoJsonLayer, 'DAMS')
+  controlLayers.addOverlay(dams, 'DAMS')
+     });
 
-    });
 
-// $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
-//   geoJsonLayer = L.geoJson(data, {
-//     style: {color: '#ffa500', weight:1.5},
-//        onEachFeature: onEachFeature
-
-//   }).addTo(map);
-// controlLayers.addOverlay(geoJsonLayer, 'Barrages');
-// });
-
+$.getJSON("barrages_wri_table_20220331.geojson", function (data) {
+  var barrages = L.geoJson(data, {
+        pointToLayer: function( feature, latlng) {
+          return L.marker(latlng, { options: {
+            iconSize:     [5, 10],
+            color:'#ff0000'
+          }          })
+          .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
+        }
+      }).addTo(map); // display by default
+  controlLayers.addOverlay(dams, 'BARRAGES')
+     });
 // function setStyle(feature) {
 // 	return {
 // 		opacity: 1,
