@@ -29,17 +29,17 @@ map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.go
 
 
 
-$.getJSON("json/dams_wri_table_20220331.geojson", function (data) {
+$.getJSON("dams_wri_table_20220331.geojson", function (data) {
   var geoJsonLayer = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
           return L.marker(latlng, { options: {
             iconSize:     [20, 80],
             color:'#6afc6c'
-          }
-          })
+          }          })
           .bindPopup(feature.properties.dam + '<br>' + feature.properties.River);
         }
       }).addTo(map); // display by default
+  controlLayers.addOverlay(geoJsonLayer, 'DAMS')
 
     });
 
