@@ -27,16 +27,16 @@ new L.esri.basemapLayer('ImageryLabels').addTo(map);
 map.attributionControl.addAttribution('View <a href="https://github.com/monsoonforest/indias-blocked-rivers/">open-source code on GitHub</a>');
 map.attributionControl.addAttribution('Data &copy; <a href="https://indiawris.gov.in/wris/#/waterResources">Gov. of India </a>');
 
-var damIcon = L.icon({
+var damIcon = L.icon({options: {
     iconUrl: 'dams.png',
     iconSize: [38, 95]
-  });
+  }});
 
 
 $.getJSON("dams_wri_table_20220331.geojson", function (data) {
   var dams = L.geoJson(data, {
         pointToLayer: function( feature, latlng) {
-          return L.marker(latlng, { options: {
+          return L.(latlng, { options: {
             icon: damIcon
                      }          })
           .bindPopup('Dam Name: ' + feature.properties.dam + '<br>' + 'River Name: ' + feature.properties.River);
@@ -45,10 +45,10 @@ $.getJSON("dams_wri_table_20220331.geojson", function (data) {
   controlLayers.addOverlay(dams, 'DAMS')
      });
 
-var barrageIcon = L.icon({
+var barrageIcon = L.icon({options:{
     iconUrl: 'barrages.png',
     iconSize: [38, 95]
-  });
+  }});
 
 $.getJSON("barrages_wri_table_20220331.geojson", function (data) {
   var barrages = L.geoJson(data, {
